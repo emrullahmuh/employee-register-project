@@ -19,12 +19,18 @@
                 Welcome To Employee Registration Page
             </h2>
             <div class="card-body " >
-                <form th:object="${employee}" th:action="/employee/insert" method="post">
+                <form th:object="${employee}" th:action="@{/employee/insert}" method="post">
 
                     <div class="form-row">
                         <div class="form-group col">
                             <label for="inputEmail4">First Name</label>
                             <input type="text"  class="form-control" id="inputFirstName4" placeholder="First Name" th:field="*{firstName}" >
+                      <div class="text-danger" th:if="${#fields.hasErrors('firstName')}">
+                          <ol>
+                              <li th:each="error:${#fields.errors()}" th:text="${error}"></li>
+
+                          </ol>
+                      </div>
                         </div>
                         <div class="form-group col">
                             <label for="inputPassword4">Last Name</label>
